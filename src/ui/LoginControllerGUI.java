@@ -71,9 +71,9 @@ public class LoginControllerGUI {
     		loginStage.setScene(scene);
     		loginStage.setTitle("Questions");
     		loginStage.show(); 
-    		questions.getLabName().setText(player.getName());
-    		questions.getLabScore().setText(String.valueOf(player.getScore()));
-    		questions.showQuestions();
+    	//	questions.getLabName().setText(player.getName());
+    	//	questions.getLabScore().setText(String.valueOf(player.getScore()));
+    	//	questions.showQuestions();
     	}
     }
 
@@ -89,7 +89,12 @@ public class LoginControllerGUI {
 	public void setPlayer(Player player) {
 		this.player = player;
 	}
+
+	public Stage getLoginStage() {
+		return loginStage;
+	}
     
+	
     
     
     

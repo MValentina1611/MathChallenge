@@ -1,11 +1,18 @@
 package ui;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import model.Questions;
+import model.Timer;
+import thread.TimerThread;
 
 public class QuestionsControllerGUI {
 
@@ -39,6 +46,8 @@ public class QuestionsControllerGUI {
 	   // Attributes
 	    private Questions questions;
 	    private LoginControllerGUI loginGUI;
+	    private TimerThread timerThread;
+	    private Timer timer;
 	    
 	    //Builder
 	    public QuestionsControllerGUI( LoginControllerGUI loginGUI)
@@ -49,54 +58,86 @@ public class QuestionsControllerGUI {
 	    	btnOp2 = new Button();
 	    	btnOp3 = new Button();
 	    	btnOp4 = new Button();
+	    	timer = new Timer();
+	    	timerThread = new TimerThread(timer, this);
 	    }
 	    
+	    
+	    // Methods
+	    
+	    public void initialize() throws IOException
+	    {
+	    	labName.setText(loginGUI.getPlayer().getName());
+	    	labScore.setText(String.valueOf(loginGUI.getPlayer().getScore()));
+	    	showQuestions();
+	    	timer.setRunning(true);
+	    	timerThread.start();
+	    	
+	    }
+	    
+	    public void goToNextWindow() throws IOException
+	    {
+
+	    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("scoreBoard.fxml"));
+	    	fxmlLoader.setController(questions);
+	    	Parent root = fxmlLoader.load();
+	    	Scene scene = new Scene(root);
+	    	loginGUI.getLoginStage().setScene(scene);
+	    	loginGUI.getLoginStage().setTitle("ScoreBoard");
+	    	loginGUI.getLoginStage().show();
+	    	timer.setRunning(false);
+	    }
+	    
+	    public void refreshTimerlabel()
+	    {
+	    	labClock.setText(String.valueOf(timer.getTime()));
+	    }
+	       
 	    public void showQuestions()
 	    {
 	    	questions.generateQuestionWithOptions();
-	    	
+
 	    	labQuestion.setText(questions.getQuestion());
-	    	
+
 	    	int answerPos  = (int)(Math.random()*4+1);
-	    	
+
 	    	switch(answerPos)
-			{
-				case 1:
-				{
-					btnOp1.setText(String.valueOf(questions.getAnswer()));
-					btnOp2.setText(String.valueOf(questions.getOp1()));
-					btnOp3.setText(String.valueOf(questions.getOp2()));
-					btnOp4.setText(String.valueOf(questions.getOp3()));
-					break;
-				}
-				
-				case 2:
-				{
-					btnOp2.setText(String.valueOf(questions.getAnswer()));
-					btnOp1.setText(String.valueOf(questions.getOp1()));
-					btnOp3.setText(String.valueOf(questions.getOp2()));
-					btnOp4.setText(String.valueOf(questions.getOp3()));
-					break;
-				}
-				case 3:
-				{
-					btnOp3.setText(String.valueOf(questions.getAnswer()));
-					btnOp2.setText(String.valueOf(questions.getOp1()));
-					btnOp1.setText(String.valueOf(questions.getOp2()));
-					btnOp4.setText(String.valueOf(questions.getOp3()));
-					break;
-				}
-				
-				case 4:
-				{
-					btnOp4.setText(String.valueOf(questions.getAnswer()));
-					btnOp2.setText(String.valueOf(questions.getOp1()));
-					btnOp3.setText(String.valueOf(questions.getOp2()));
-					btnOp1.setText(String.valueOf(questions.getOp3()));
-					break;
-				}
-			}
-		
+	    	{
+		    	case 1:
+		    	{
+		    		btnOp1.setText(String.valueOf(questions.getAnswer()));
+		    		btnOp2.setText(String.valueOf(questions.getOp1()));
+		    		btnOp3.setText(String.valueOf(questions.getOp2()));
+		    		btnOp4.setText(String.valueOf(questions.getOp3()));
+		    		break;
+		    	}
+	
+		    	case 2:
+		    	{
+		    		btnOp2.setText(String.valueOf(questions.getAnswer()));
+		    		btnOp1.setText(String.valueOf(questions.getOp1()));
+		    		btnOp3.setText(String.valueOf(questions.getOp2()));
+		    		btnOp4.setText(String.valueOf(questions.getOp3()));
+		    		break;
+		    	}
+		    	case 3:
+		    	{
+		    		btnOp3.setText(String.valueOf(questions.getAnswer()));
+		    		btnOp2.setText(String.valueOf(questions.getOp1()));
+		    		btnOp1.setText(String.valueOf(questions.getOp2()));
+		    		btnOp4.setText(String.valueOf(questions.getOp3()));
+		    		break;
+		    	}
+	
+		    	case 4:
+		    	{
+		    		btnOp4.setText(String.valueOf(questions.getAnswer()));
+		    		btnOp2.setText(String.valueOf(questions.getOp1()));
+		    		btnOp3.setText(String.valueOf(questions.getOp2()));
+		    		btnOp1.setText(String.valueOf(questions.getOp3()));
+		    		break;
+		    	}
+	    	}
 	    }
 	    
 	    public boolean verifyCorrectAnswer(int op)

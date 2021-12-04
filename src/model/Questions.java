@@ -23,7 +23,7 @@ public class Questions {
 	
 	public void generateQuestionWithOptions()
 	{
-		generateQuestion(4,(int)(Math.random()*100),(int)(Math.random()*100));
+		generateQuestion(generateOperator(),(int)(Math.random()*100),(int)(Math.random()*100));
 		System.out.println(question);
 		//System.out.println(generateQuestion(generateOperator()));
 		System.out.println(answer);
@@ -92,7 +92,7 @@ public class Questions {
 		{
 			//System.out.println("while");
 			int result = (int)(Math.random()*100);
-			if( result != answer && result <= answer+10 && result >= answer-10 && searchInOptions(result) == false )
+			if( result != answer && result <= answer+10 && result >= answer-10 && searchInOptions(result) == false && result !=0)
 			{
 				System.out.println(result);
 				options.add(result);
