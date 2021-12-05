@@ -1,9 +1,12 @@
 package ui;
 
+import java.io.IOException;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import model.ScoreBoard;
 
 public class ScoreBoardControllerGUI {
 
@@ -34,4 +37,24 @@ public class ScoreBoardControllerGUI {
 
     @FXML
     private Button btnDeleteScore;
+    
+    //Attributes
+    private LoginControllerGUI loginGUI;
+    private ScoreBoard scoreBoard;
+    
+    public ScoreBoardControllerGUI(LoginControllerGUI loginGUI)
+    {
+    	this.loginGUI = loginGUI;
+    	scoreBoard = new ScoreBoard();
+    	
+    }
+    
+    
+    public void initializeWindow() throws IOException
+    {
+    	labPosP.setText(String.valueOf(loginGUI.getPlayer().getScore()));
+    	scoreBoard.importData();
+    	
+    }
+        
 }

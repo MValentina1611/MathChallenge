@@ -9,8 +9,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
 import model.Questions;
+import model.ScoreBoard;
 import model.Timer;
 import thread.TimerThread;
 
@@ -48,12 +48,16 @@ public class QuestionsControllerGUI {
 	    private LoginControllerGUI loginGUI;
 	    private TimerThread timerThread;
 	    private Timer timer;
+	    private ScoreBoardControllerGUI scoreBoardGUI;
+	    private ScoreBoard scoreBoard;
 	    
 	    //Builder
 	    public QuestionsControllerGUI( LoginControllerGUI loginGUI)
 	    {
 	    	questions = new Questions();
 	    	this.loginGUI = loginGUI;
+	    	scoreBoardGUI = new ScoreBoardControllerGUI(loginGUI);
+	    	scoreBoard = new ScoreBoard();
 	    	btnOp1 = new Button();
 	    	btnOp2 = new Button();
 	    	btnOp3 = new Button();
@@ -79,13 +83,16 @@ public class QuestionsControllerGUI {
 	    {
 
 	    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("scoreBoard.fxml"));
-	    	fxmlLoader.setController(questions);
+	    	fxmlLoader.setController(scoreBoardGUI);
 	    	Parent root = fxmlLoader.load();
 	    	Scene scene = new Scene(root);
 	    	loginGUI.getLoginStage().setScene(scene);
 	    	loginGUI.getLoginStage().setTitle("ScoreBoard");
 	    	loginGUI.getLoginStage().show();
 	    	timer.setRunning(false);
+	    	scoreBoard.addPlayerBothWays(loginGUI.getPlayer());
+	    	scoreBoardGUI.initializeWindow();
+	    	
 	    }
 	    
 	    public void refreshTimerlabel()
