@@ -2,6 +2,7 @@ package ui;
 
 import java.io.IOException;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -37,6 +38,10 @@ public class ScoreBoardControllerGUI {
 
     @FXML
     private Button btnDeleteScore;
+    
+    @FXML
+    private Button btnSearch;
+
     
     //Attributes
     private LoginControllerGUI loginGUI;
@@ -119,5 +124,17 @@ public class ScoreBoardControllerGUI {
 			
 		}
     }
+    
+    @FXML
+    public void searchPlayer(ActionEvent event) 
+    {
+    	labSearchScore.setText(scoreBoard.searchPlayer(txtSearchPalyer.getText()).toString());
+    }
+    
+    
+    
+    
+    
+    
     
 }
