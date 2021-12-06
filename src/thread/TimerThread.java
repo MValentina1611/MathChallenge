@@ -21,7 +21,7 @@ public class TimerThread extends Thread{
 	{
 		while(timer.isRunning())
 		{	
-			System.out.println(timer.decreaseTime());
+			//System.out.println(timer.decreaseTime());
 			Platform.runLater(new Thread() 
 			{
 				public void run() 
@@ -35,7 +35,6 @@ public class TimerThread extends Thread{
 					{
 						try {
 							qcGUI.goToNextWindow();
-							//timer.setRunning(false);
 						} catch (IOException e) {
 							e.printStackTrace();
 						}

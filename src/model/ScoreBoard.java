@@ -197,15 +197,11 @@ public class ScoreBoard {
 	public void fillTop5()
 	{
 		Player toTop5 = max(rootScore);
-		System.out.println("fill");
-		System.out.println(toTop5.getScore());
 		
 		while(top5.size() < selectTop())
 		{
-			System.out.println("while");
 			top5.add(toTop5);
 			toTop5 = toTop5.getUp();
-			System.out.println(toTop5.getName());
 		}
 	}
 
@@ -223,12 +219,9 @@ public class ScoreBoard {
 	private int selectTop()
 	{
 		int top = 5;
-		System.out.println("selectTop");
-		
 		if( depth(max(rootScore)) < 5 )
 		{
 			top = depth(max(rootScore));
-			System.out.println(top);
 		}
 		return top;
 	}
@@ -238,7 +231,7 @@ public class ScoreBoard {
 	}
 
 	
-	
+	/*
 	public void printInorder( Player play )
 	{
 		if( play != null)
@@ -249,6 +242,18 @@ public class ScoreBoard {
 		}
 	}
 	
+	
+		public void printList(ArrayList<Player> top5, int i)
+	{
+		if( i < top5.size() && top5.get(i) != null )
+		{
+			System.out.println("A "+top5.get(i));
+			i = i+1;
+			printList(top5, i);
+		}
+		
+	}
+	*/
 	public void addToTop5(Player player)
 	{
 		if(player != null)
@@ -275,16 +280,7 @@ public class ScoreBoard {
 		return position;
 	}
 	
-	public void printList(ArrayList<Player> top5, int i)
-	{
-		if( i < top5.size() && top5.get(i) != null )
-		{
-			System.out.println("A "+top5.get(i));
-			i = i+1;
-			printList(top5, i);
-		}
-		
-	}
+
 
 	public Player getRootScore() {
 		return rootScore;

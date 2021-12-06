@@ -104,7 +104,7 @@ public class QuestionsControllerGUI {
 	    {
 	    	labClock.setText(String.valueOf(timer.getTime()));
 	    	pbTimer.setProgress((double)((timer.getTime()*0.01)/0.6));
-	    	System.out.println("Pb double: " + (double) ((timer.getTime()*0.01)/0.6));
+	    	//System.out.println("Pb double: " + (double) ((timer.getTime()*0.01)/0.6));
 	    	
 	    }
 	       
@@ -183,7 +183,7 @@ public class QuestionsControllerGUI {
 	    		labScore.setText(String.valueOf(loginGUI.getPlayer().getScore()));
 	    	}
 	    	
-	    	//questions.getOptions().clear();
+	    	questions.getOptions().clear();
 	    	showQuestions();
 	    }
 	    

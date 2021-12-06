@@ -61,10 +61,10 @@ public class ScoreBoardControllerGUI {
     	//scoreBoard.fillTop5();
     	//scoreBoard.printInorder(scoreBoard.getRootScore());
     	scoreBoard.addToTop5(scoreBoard.getRootScore());
-    	labPosP.setText("You are in position number "+String.valueOf(scoreBoard.getTop5().size()-scoreBoard.searchInTop5(loginGUI.getPlayer())));
+    	labPosP.setText("Your position is the number "+String.valueOf(scoreBoard.getTop5().size()-scoreBoard.searchInTop5(loginGUI.getPlayer())));
     	setTop5(scoreBoard.getTop5().size());
-    	System.out.println("Arraylist");
-    	scoreBoard.printList(scoreBoard.getTop5(), 0);
+    	//System.out.println("Arraylist");
+    	//scoreBoard.printList(scoreBoard.getTop5(), 0);
     }
     
     
