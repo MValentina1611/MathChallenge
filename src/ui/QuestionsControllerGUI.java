@@ -183,7 +183,7 @@ public class QuestionsControllerGUI {
 	    		labScore.setText(String.valueOf(loginGUI.getPlayer().getScore()));
 	    	}
 	    	
-	    	questions.getOptions().clear();
+	    	//questions.getOptions().clear();
 	    	showQuestions();
 	    }
 	    
