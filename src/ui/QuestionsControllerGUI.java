@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import model.Questions;
 import model.ScoreBoard;
 import model.Timer;
@@ -42,6 +43,8 @@ public class QuestionsControllerGUI {
 	    @FXML
 	    private Label labName;
 
+	    @FXML
+	    private ProgressBar pbTimer;
 	    
 	   // Attributes
 	    private Questions questions;
@@ -64,6 +67,7 @@ public class QuestionsControllerGUI {
 	    	btnOp4 = new Button();
 	    	timer = new Timer();
 	    	timerThread = new TimerThread(timer, this);
+	    	pbTimer = new ProgressBar(1);
 	    }
 	    
 	    
@@ -95,11 +99,16 @@ public class QuestionsControllerGUI {
 	    	
 	    }
 	    
+	    
 	    public void refreshTimerlabel()
 	    {
 	    	labClock.setText(String.valueOf(timer.getTime()));
+	    	pbTimer.setProgress((double)((timer.getTime()*0.01)/0.6));
+	    	System.out.println("Pb double: " + (double) ((timer.getTime()*0.01)/0.6));
+	    	
 	    }
 	       
+	
 	    public void showQuestions()
 	    {
 	    	questions.generateQuestionWithOptions();
@@ -243,7 +252,13 @@ public class QuestionsControllerGUI {
 			this.labName = labName;
 		}
 
+
+		public ProgressBar getPbTimer() {
+			return pbTimer;
+		}
+
 	
+		
 	    
 	    
 }

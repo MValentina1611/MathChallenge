@@ -29,6 +29,7 @@ public class TimerThread extends Thread{
 					if(timer.getTime() > 0 )
 					{
 						qcGUI.refreshTimerlabel();
+						
 					}
 					else
 					{
