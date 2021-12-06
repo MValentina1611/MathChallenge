@@ -18,18 +18,17 @@ public class Questions {
 		op2 = 0;
 		op3 = 0;
 		options = new ArrayList<Integer>();
-		
 	}
 	
 	public void generateQuestionWithOptions()
 	{
 		generateQuestion(generateOperator(),(int)(Math.random()*100),(int)(Math.random()*100));
-		System.out.println(question);
+		//System.out.println(question);
 		//System.out.println(generateQuestion(generateOperator()));
-		System.out.println(answer);
+		//System.out.println(answer);
 		generateOptions();
 		assignOptions();
-		System.out.println( op1 +""+ op2 +""+ op3 );
+		//System.out.println( op1 +""+ op2 +""+ op3 );
 	}
 	
 	public void generateQuestion(int operator, int num1, int num2)
@@ -41,21 +40,25 @@ public class Questions {
 			{
 				answer = num1 + num2;
 				question = num1 + "+" + num2;
-				break;
+				
 			}
+			break;
 			
 			case 2:
 			{
 				answer = num1 - num2;
 				question = num1 + "-" + num2;
-				break;
+				
 			}
+			break;
+			
 			case 3:
 			{
 				answer = num1 * num2;
 				question = num1 + "x" + num2;
-				break;
+				
 			}
+			break;
 			
 			case 4:
 			{
@@ -71,9 +74,9 @@ public class Questions {
 					num2 = (int)(Math.random()*100);
 					generateQuestion(4, num1,num2);
 				}
-				break;
+				
 			}
-	
+			break;
 		}
 		
 	}
@@ -88,7 +91,7 @@ public class Questions {
 	
 	public void generateOptions()
 	{
-		while( options.size() < 3 )
+		while(options.size() < 3 )
 		{
 			//System.out.println("while");
 			int result = (int)(Math.random()*100);
@@ -97,7 +100,9 @@ public class Questions {
 				System.out.println(result);
 				options.add(result);
 				System.out.println("ADDED");
+				generateOptions();
 			}
+			
 		}
 	}
 	
@@ -146,4 +151,11 @@ public class Questions {
 	{
 		return question;
 	}
+
+	public ArrayList<Integer> getOptions() {
+		return options;
+	}
+	
+	
 }
+

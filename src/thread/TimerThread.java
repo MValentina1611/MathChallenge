@@ -16,11 +16,11 @@ public class TimerThread extends Thread{
 		this.qcGUI = qcGUI;
 	}
 	
+	
 	public void run()
 	{
 		while(timer.isRunning())
 		{	
-
 			System.out.println(timer.decreaseTime());
 			Platform.runLater(new Thread() 
 			{
@@ -34,11 +34,12 @@ public class TimerThread extends Thread{
 					{
 						try {
 							qcGUI.goToNextWindow();
+							//timer.setRunning(false);
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
 						
-						//timer.setRunning(false);
+						
 					}
 				}
 			});
@@ -50,4 +51,5 @@ public class TimerThread extends Thread{
 			}
 		}
 	}
+	
 }

@@ -7,7 +7,7 @@ public class Player {
 	
 	private Player right;
 	private Player left;
-	
+	private Player up;
 	
 	public Player(String name)
 	{
@@ -61,5 +61,18 @@ public class Player {
 	{
 		return name.compareTo(nameP);
 	}
+
+	public void setUp(Player up) {
+		this.up = up;
+	}
 	
+	public Player getUp() {
+		
+		return up;
+	}
+	
+	public String toString()
+	{
+		return "Name: "+name+" Score: "+score;
+	}
 }

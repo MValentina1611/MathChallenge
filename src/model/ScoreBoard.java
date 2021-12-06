@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ScoreBoard {
 
@@ -11,7 +12,13 @@ public class ScoreBoard {
 	private Player rootScore;
 	private String FILE_IMPORT_PLAYERS_CSV_PATH = "data/PlayerDataExported.csv";
 	private String FILE_EXPORT_PLAYERS_CSV_PATH = "data/PlayerDataExported.csv";
+	private ArrayList<Player> top5;
 	
+	
+	public ScoreBoard()
+	{
+		top5 = new ArrayList<Player>();
+	}
 	
 	public void addPlayerBothWays(Player newPlayer) throws IOException
 	{
@@ -40,6 +47,7 @@ public class ScoreBoard {
 					if( temp.getLeft() == null)
 					{
 						temp.setLeft(newPlayer);
+						newPlayer.setUp(temp);
 						added = true;
 					}
 					else
@@ -53,6 +61,7 @@ public class ScoreBoard {
 					if( temp.getRight() == null)
 					{
 						temp.setRight(newPlayer);
+						newPlayer.setUp(temp);
 						added = true;
 					}
 					else
@@ -173,6 +182,104 @@ public class ScoreBoard {
 	}
 
 	
+	private Player max(Player current)
+	{
+		if(current.getRight() == null)
+		{
+			return current;
+		}
+		else
+		{
+			return max(current.getRight());
+		}
+	}
 	
+	public void fillTop5()
+	{
+		Player toTop5 = max(rootScore);
+		System.out.println("fill");
+		System.out.println(toTop5.getScore());
+		
+		while(top5.size() < selectTop())
+		{
+			System.out.println("while");
+			top5.add(toTop5);
+			toTop5 = toTop5.getUp();
+			System.out.println(toTop5.getName());
+		}
+	}
 
+	private int depth(Player player)
+	{
+		int depth = 0;
+		if(player != rootScore)
+		{
+			depth = 1 + depth(player.getUp());
+		}
+		
+		return depth;
+	}
+	
+	private int selectTop()
+	{
+		int top = 5;
+		System.out.println("selectTop");
+		
+		if( depth(max(rootScore)) < 5 )
+		{
+			top = depth(max(rootScore));
+			System.out.println(top);
+		}
+		return top;
+	}
+	
+	public ArrayList<Player> getTop5() {
+		return top5;
+	}
+
+	
+	
+	public void printInorder( Player play )
+	{
+		if( play != null)
+		{	
+			printInorder (play.getLeft());
+			System.out.println(play.toString());
+			printInorder (play.getRight());	
+		}
+	}
+	
+	public void addToTop5(Player player)
+	{
+		if(player != null)
+		{
+			addToTop5(player.getLeft());
+			top5.add(player);
+			addToTop5(player.getRight());
+			
+		}
+	}
+	
+	
+	
+	public void printList(ArrayList<Player> top5, int i)
+	{
+		if( i < top5.size() && top5.get(i) != null )
+		{
+			System.out.println("A "+top5.get(i));
+			i = i+1;
+			printList(top5, i);
+		}
+		
+	}
+
+	public Player getRootScore() {
+		return rootScore;
+	}
+
+	
+	//----------Getter------------
+	
+	
+	
 }

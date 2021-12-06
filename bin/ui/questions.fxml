@@ -8,7 +8,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: light gray;" VBox.vgrow="ALWAYS">
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" VBox.vgrow="ALWAYS">
          <children>
             <Label fx:id="labQuestion" layoutX="222.0" layoutY="110.0" style="-fx-background-color: WHITE;" text="PREGUNTA">
                <font>
