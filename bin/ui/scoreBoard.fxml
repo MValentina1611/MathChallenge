@@ -24,7 +24,7 @@
             <Label fx:id="labPosP" layoutX="217.0" layoutY="310.0" prefHeight="43.0" prefWidth="170.0" text="PLAYER " />
             <TextField fx:id="txtSearchPalyer" layoutX="53.0" layoutY="45.0" />
             <Label layoutX="14.0" layoutY="49.0" text="Name" />
-            <Label fx:id="labSearchScore" layoutX="61.0" layoutY="85.0" prefHeight="17.0" prefWidth="136.0" text="Puntaje" />
+            <Label fx:id="labSearchScore" layoutX="61.0" layoutY="85.0" prefHeight="55.0" prefWidth="136.0" text="Puntaje" />
             <Button fx:id="btnDeleteScore" layoutX="474.0" layoutY="45.0" mnemonicParsing="false" text="Delete  Score" />
             <Button fx:id="btnSearch" layoutX="202.0" layoutY="45.0" mnemonicParsing="false" onAction="#searchPlayer" text="Search" />
          </children>

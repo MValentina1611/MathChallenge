@@ -57,11 +57,11 @@ public class ScoreBoardControllerGUI {
     
     public void initializeWindow() throws IOException
     {
-    	labPosP.setText(String.valueOf(loginGUI.getPlayer().getScore()));
     	scoreBoard.importData();
     	//scoreBoard.fillTop5();
     	//scoreBoard.printInorder(scoreBoard.getRootScore());
     	scoreBoard.addToTop5(scoreBoard.getRootScore());
+    	labPosP.setText("You are in position number "+String.valueOf(scoreBoard.getTop5().size()-scoreBoard.searchInTop5(loginGUI.getPlayer())));
     	setTop5(scoreBoard.getTop5().size());
     	System.out.println("Arraylist");
     	scoreBoard.printList(scoreBoard.getTop5(), 0);

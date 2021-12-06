@@ -260,7 +260,20 @@ public class ScoreBoard {
 		}
 	}
 	
-	
+	public int searchInTop5(Player toSearch)
+	{
+		int position = 0;
+		System.out.println(top5.size());
+		for(int i = 0; i < top5.size(); i++)
+		{
+			System.out.println(position);
+			if(top5.get(i) == toSearch)
+			{
+				return i;
+			}
+		}
+		return position;
+	}
 	
 	public void printList(ArrayList<Player> top5, int i)
 	{

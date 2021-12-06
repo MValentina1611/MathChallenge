@@ -73,6 +73,6 @@ public class Player {
 	
 	public String toString()
 	{
-		return "Name: "+name+" Score: "+score;
+		return "Name: "+name+"\nScore: "+score;
 	}
 }
